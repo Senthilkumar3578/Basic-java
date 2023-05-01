@@ -1,0 +1,39 @@
+package OOPS;
+
+
+abstract class Parent{
+	
+	    abstract  void addNumbers(int i,int j);
+	    public void sub() {
+	    	System.out.println("Is normla method");
+	    }
+	    
+	    Parent(){
+	    	System.out.println("Parent constucter");
+	    }
+	     
+}
+
+class Child extends Parent {
+	
+	    public void addNumbers(int i,int j) {
+	    	   
+	    	 System.out.println("sum= "+(i+j));
+	    }
+	    
+	    Child(){
+	    	System.out.println("child construter");
+	    }
+
+}
+
+
+public class Abstract{
+	public static void main(String[] args) {
+		
+		Child c=new Child();
+		c.addNumbers(3, 5);
+		c.sub();
+		
+	}
+}
