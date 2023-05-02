@@ -32,5 +32,6 @@ class Interface{
 		 obj.method2();
 		 obj.method3();
          System.out.println("senthil");
+         System.out.println("kumar");
 	}
 }
