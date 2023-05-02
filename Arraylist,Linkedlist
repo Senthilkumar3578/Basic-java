@@ -3,6 +3,7 @@ package Collection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Arraylist {
 
@@ -40,11 +41,38 @@ public class Arraylist {
 		}
 	    
 	    
+	    System.out.println("------------------Linked List---------------------");
+	    //Linked List
 	    
-		
-		
-		
-		
+	    LinkedList ll=new LinkedList();
+	    
+	    ll.add("A");
+        ll.add("B");
+        ll.addLast("C");
+        ll.addFirst("D");
+        ll.add(2, "E");
+ 
+        System.out.println(ll);
+ 
+        
+ 
+        System.out.println(ll);
+        
+         System.out.println("List contais hello  " +ll.contains("hello"));
+         
+         System.out.println("Head of the list  "+ll.element());
+         
+         System.out.println("poll remove head   "+ll.poll());
+         
+         System.out.println("peek dont remove head  "+ll.peek());
+         
+         ll.offer("Senthil");
+         ll.offerFirst("kumar");
+         ll.offerLast("jack");
+         
+         System.out.println(ll);
+         
+    	
 		
 
 	}
