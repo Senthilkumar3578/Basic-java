@@ -1,0 +1,82 @@
+package Collection;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
+public class Sets {
+
+	public static void main(String[] args) {
+    System.out.println("----------------------Hash Set---------------------\n\n");
+	    HashSet<String> hs=new HashSet<String>(); //Insertion order not maintain dublicate not allowed
+	    hs.add("Senthil");
+	    hs.add("kumar");
+	    hs.add("jack");
+	    
+	    hs.add("kumar");
+	    System.out.println(hs);
+	    
+	    System.out.println("List contains India or not:" + hs.contains("kumar"));
+	    
+	    hs.remove("jack");
+        System.out.println("List after removing Australia:"+ hs);
+        
+        System.out.println("Element AC exists in the Set : "+ hs.remove("AC"));
+        
+        
+        HashSet<String> hst=new HashSet<String>();
+        hst=(HashSet<String>) hs.clone();
+        System.out.println(hst);
+        
+        System.out.println("Two sets are equal :"+hst.equals(hs));
+        
+        
+        System.out.println("\n---------------------TreeSet-----------------------\n");
+        
+        TreeSet tset = new TreeSet();   //Accending oreder dublicate not allowed
+          
+         for (int i = 1; i <=10;i++) {
+			  tset.add(i);
+		}
+         System.out.println(tset);
+         
+         System.out.println("kudutha value vida kammiyana vale "+tset.headSet(3));
+         
+         System.out.println("kudutha value athigama vale "+tset.tailSet(8));
+         
+         System.out.println("Higer value "+tset.higher(3));
+          
+         System.out.println("Lower value "+tset.lower(3));
+         
+         System.out.println("desending oreder set "+tset.descendingSet());
+         
+         System.out.println("\n-----------------Linked Hash Set-------------------------------\n");
+         
+         LinkedHashSet<String> liset= new LinkedHashSet<String>();
+
+     
+     liset.add("A");
+     liset.add("B");
+     liset.add("C");
+     liset.add("D");
+     liset.add("A");
+     liset.add("E");
+
+    
+     System.out.println("Size of LinkedHashSet = "+ liset.size());
+
+     System.out.println("Original LinkedHashSet:"+ liset);
+
+     System.out.println("Removing D from LinkedHashSet: " + liset.remove("D"));
+
+     System.out.println("Trying to Remove Z which is not "+ "present: " + liset.remove("Z"));
+
+     System.out.println("Checking if A is present=" + liset.contains("A"));
+
+     System.out.println("Updated LinkedHashSet: " + liset);
+    
+	}
+
+}
