@@ -31,5 +31,6 @@ class Interface{
 		 obj.method1();
 		 obj.method2();
 		 obj.method3();
+         System.out.println("senthil");
 	}
 }
