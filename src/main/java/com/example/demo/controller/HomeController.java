@@ -1,24 +1,22 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.Registration;
 import com.example.demo.service.StudentService;
- 
+
+import javax.servlet.http.HttpServletRequest;
+
 @RestController 
-@Component
 @RequestMapping("/Homepage")
 public class HomeController {
 	
@@ -26,10 +24,37 @@ public class HomeController {
 	StudentService stservice;
 	
 	 @PostMapping("/registration")
-	 public Registration addValues(@RequestBody Registration regi) {
+	 public Registration addValues(@RequestBody Registration regi) throws Exception {
 		 return this.stservice.addData(regi);
 	 }
-	 
+	 //Request Form
+     @GetMapping("/user")
+	 public String getUser(@RequestParam String name,@RequestParam(defaultValue = "25") int age){
+            return "My name is  "+name +"  age is ="+age;
+	 }
+
+	 //PathVariable
+	@GetMapping("/users/{name}/{age}/{country}")
+	public  String printUserName(@PathVariable String name,
+								 @PathVariable int age,
+								 @PathVariable String country){
+		 return  "My name is ="+name +"  age is  "+age+"  country is  "+country;
+	}
+
+	//HeaderFarms
+	@GetMapping("/header")
+	public  String handleRequestHeader(@RequestHeader Map<String,String> mapvalues){
+		System.out.println("print the header ="+mapvalues);
+		return "success";
+	}
+
+	@GetMapping("/my-endpoint")
+	public String myEndpoint(@RequestHeader("Authorization") String authorizationHeader) {
+		// Process the header parameter
+		return "Received Authorization header: " + authorizationHeader;
+	}
+
+
 	 @GetMapping("/getRecords")
 	 public List<Registration> getData() {
 		return this.stservice.getAllRecords();
@@ -47,6 +72,12 @@ public class HomeController {
 	  public String deleteRecord(@PathVariable(value = "sid")Integer stid) {
 		    
 		  return this.stservice.deleteRecord(stid);
+	  }
+	  
+	    
+	  @GetMapping("/getAllStu/{pageNo}/{recordCount}")
+	  public List<Registration> getAllStu(@PathVariable Integer pageNo,@PathVariable Integer recordCount){
+		  return this.stservice.getAllStu(pageNo, recordCount);
 	  }
 	 
 	
