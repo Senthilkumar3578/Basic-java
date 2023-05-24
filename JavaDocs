@@ -1,0 +1,39 @@
+/**
+ * This class is example for java class
+ */
+public class JavaDocs {
+
+
+       public static void main(String[] args) {
+              int x=10,y=10;
+              addition(x,y);
+       }
+
+       /**
+         Please enter addiion codes details
+        @param x value
+        @param y value
+        @return adding two value
+        @author 91768\
+        */
+       public static int addition(int x,int y){
+            return x+y;
+       }
+       /**
+        * please enter details
+
+        */
+       public void Hemthath(int age){
+
+       }
+
+       /**
+        * Pls return pravven age
+        * @return
+        */
+       public  int praveen(){
+
+              return 7;
+
+       }
+}
