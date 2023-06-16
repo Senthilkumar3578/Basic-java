@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 
+import org.springframework.http.HttpStatus;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,9 @@ public class Registration {
     private String country;
     @Column(name="IPAddress")
     private String ip;
+
+
+
     public String getCountry() {
         return country;
     }

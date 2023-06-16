@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.example.demo.payload.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,8 +26,9 @@ public class HomeController {
 	StudentService stservice;
 	
 	 @PostMapping("/registration")
-	 public Registration addValues(@RequestBody Registration regi) throws Exception {
-		 return this.stservice.addData(regi);
+	 public ResponseEntity<Registration> addValues(@RequestBody Registration regi) throws Exception {
+		 Registration res=this.stservice.addData(regi);
+		 return new ResponseEntity<Registration>(res,HttpStatus.CREATED);
 	 }
 	 //Request Form
      @GetMapping("/user")
@@ -56,30 +59,33 @@ public class HomeController {
 
 
 	 @GetMapping("/getRecords")
-	 public List<Registration> getData() {
-		return this.stservice.getAllRecords();
-		 
+	 public ResponseEntity<List<Registration>> getData() {
+		 List<Registration> res = this.stservice.getAllRecords();
+		 return ResponseEntity.ok(res);
 	 }
-	   	
-	 //Fetch one record
+
+	//Fetch one record
 	@GetMapping("/getParticularRecords/{id}")
-	public Optional<Registration> getRecords(@PathVariable (value = "id") Integer id){
+	public  Registration getRecords(@PathVariable (value = "id") Integer id) {
 		return this.stservice.getRecord(id);
 		
 	} 
-	
+
 	  @DeleteMapping("deleteRecord/{sid}")
-	  public String deleteRecord(@PathVariable(value = "sid")Integer stid) {
-		    
-		  return this.stservice.deleteRecord(stid);
+	  public ResponseEntity<ApiResponse> deleteRecord(@PathVariable(value = "sid")Integer stid) {
+		 stservice.deleteRecord(stid);
+		 ApiResponse apiResponse=ApiResponse.builder()
+				 .message("Record Deleted Successfully")
+				 .status(String.valueOf(HttpStatus.OK))
+				 .success(true)
+				 .timestamp(new Date()).build();
+
+         return new ResponseEntity<ApiResponse>(apiResponse,HttpStatus.OK);
+
 	  }
-	  
 	    
 	  @GetMapping("/getAllStu/{pageNo}/{recordCount}")
-	  public List<Registration> getAllStu(@PathVariable Integer pageNo,@PathVariable Integer recordCount){
+	  public List<Registration> getAllStu(@PathVariable Integer pageNo,@PathVariable Integer recordCount) {
 		  return this.stservice.getAllStu(pageNo, recordCount);
 	  }
-	 
-	
-
 }

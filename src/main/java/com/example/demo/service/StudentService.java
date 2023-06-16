@@ -46,8 +46,10 @@ public class StudentService {
 		return this.jpa.findAll();
 	}
 
-	public Optional<Registration> getRecord(Integer id) {
-		return this.jpa.findById(id);
+	public Registration getRecord(Integer id) {
+		Registration reg=jpa.findById(id).orElseThrow(() -> new ResourceNotFoundException("Emploee not found in this id " + id));
+		//return Optional.ofNullable(this.jpa.findById(id).orElseThrow(() -> new ResourceNotFoundException("Emploee not found in this id " + id)));
+		return reg;
 	}
 
 	public String deleteRecord(Integer sid) {
